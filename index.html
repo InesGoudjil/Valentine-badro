@@ -57,8 +57,8 @@
       background: #ff6b81;
       color: white;
       margin-right: 10px;
-      font-size: 22px; 
-      padding: 18px 40px; 
+      font-size: 22px;
+      padding: 18px 40px;
     }
 
     #yesBtn:hover {
@@ -72,8 +72,9 @@
       top: 0;
     }
 
-    #subtext{
+    #subtext {
       color: #333333;
+      margin-top: 15px;
     }
 
     .result {
@@ -101,11 +102,6 @@
       .container {
         width: 90%;
         padding: 30px;
-        border-radius: 20px;
-      }
-
-      .sticker-placeholder img {
-        width: 80px; /* smaller sticker on mobile */
       }
 
       h1 {
@@ -119,8 +115,6 @@
 
       #noBtn {
         left: 120px;
-        top: 10px;
-        padding: 14px 28px;
       }
 
       .result img {
@@ -129,10 +123,6 @@
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 25px;
-      }
-
       h1 {
         font-size: 18px;
       }
@@ -144,8 +134,6 @@
 
       #noBtn {
         left: 100px;
-        top: 10px;
-        padding: 12px 24px;
       }
 
       .result img {
@@ -159,7 +147,7 @@
 
   <div class="container" id="card">
     <div class="sticker-placeholder">
-      <img src="./assets/heart.png">
+      <img src="./assets/heart.png" alt="heart">
     </div>
 
     <h1>Meriem will you bee my Valentine ?</h1>
@@ -171,9 +159,8 @@
 
     <div class="result" id="result">
       <h2>YAAAY!! 🥹💞</h2>
-      <p> You just made my heart very happy 💕</p>
-      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWF6aG05bHBqOGM0enR5cnMwNTF1YWlnZXl2ZHB0Y3I0eDlvcjdrNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Zl7u48zLVFgLpRwq6f/giphy.gif" 
-      alt="cute gif">
+      <p>You just made my heart very happy 💕</p>
+      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWF6aG05bHBqOGM0enR5cnMwNTF1YWlnZXl2ZHB0Y3I0eDlvcjdrNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Zl7u48zLVFgLpRwq6f/giphy.gif" alt="cute gif">
     </div>
 
     <div id="subtext">
@@ -181,15 +168,18 @@
     </div>
   </div>
 
+  <!-- 🎵 LOVE SONG -->
+  <audio id="loveSong" src="./assets/love-song.mp3"></audio>
+
   <script>
     const noBtn = document.getElementById('noBtn');
     const yesBtn = document.getElementById('yesBtn');
     const result = document.getElementById('result');
-    const card = document.getElementById('card');
+    const song = document.getElementById('loveSong');
 
     noBtn.addEventListener('mouseenter', () => {
-      const x = Math.random() * 250 + 100; 
-      const y = Math.random() * 200; 
+      const x = Math.random() * 250 + 100;
+      const y = Math.random() * 200;
       noBtn.style.left = `${x}px`;
       noBtn.style.top = `${y}px`;
     });
@@ -198,6 +188,10 @@
       document.querySelector('.buttons').style.display = 'none';
       result.style.display = 'block';
       document.getElementById('subtext').style.display = 'none';
+
+      song.volume = 0.6;
+      song.play();
+
       createHearts();
     });
 
@@ -210,9 +204,7 @@
         heart.style.bottom = '0px';
         document.body.appendChild(heart);
 
-        setTimeout(() => {
-          heart.remove();
-        }, 3000);
+        setTimeout(() => heart.remove(), 3000);
       }
     }
   </script>
